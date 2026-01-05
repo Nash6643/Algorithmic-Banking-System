@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 
 public class MainFrame extends JFrame {
+
+    private static final Color PANEL_BG_LIGHT = new Color(245, 247, 250);
+    private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
 
     private BinarySearchTree accountTree;
     private HashTable customerHash;
@@ -34,9 +35,6 @@ public class MainFrame extends JFrame {
     private final Color ACCENT_AMBER = new Color(245, 158, 11);
     private final Color ACCENT_PURPLE = new Color(139, 92, 246);
     private final Color BTN_NEUTRAL = new Color(51, 65, 85);
-
-    private static final Color PANEL_BG_LIGHT = new Color(245, 247, 250);
-private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
 
     public MainFrame() {
         accountTree = new BinarySearchTree();
@@ -82,15 +80,15 @@ private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
         inputPanel.setBackground(CARD_BG);
         inputPanel.setBorder(createStyledTitledBorder("1. Account Management"));
 
+        idField = createStyledTextField(6); 
+        nameField = createStyledTextField(10); 
+        balanceField = createStyledTextField(8);
+        amountField = createStyledTextField(8);
 
         idField.setToolTipText("Enter numeric Account ID (e.g. 101)");
         nameField.setToolTipText("Enter Customer Full Name");
         balanceField.setToolTipText("Enter initial balance amount (numeric)");
         amountField.setToolTipText("Enter transaction/loan amount");
-
-        idField = createStyledTextField(6); 
-        nameField = createStyledTextField(10); 
-        balanceField = createStyledTextField(8);
 
         inputPanel.add(createStyledLabel("Account ID:")); inputPanel.add(idField);
         inputPanel.add(createStyledLabel("Name:")); inputPanel.add(nameField);
@@ -100,7 +98,6 @@ private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
         JButton searchBtn = new ModernButton("Search (BST)", BTN_NEUTRAL);
         JButton loadBtn = new ModernButton("Load 1k Data", ACCENT_PURPLE);
         JButton saveBtn = new ModernButton("Export (.csv)", ACCENT_GREEN);
-
 
         JButton resetBtn = new ModernButton("Reset Fields", ACCENT_RED);
         inputPanel.add(resetBtn);
@@ -126,7 +123,6 @@ private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
         financePanel.setBackground(CARD_BG);
         financePanel.setBorder(createStyledTitledBorder("2. Financial Transactions"));
 
-        amountField = createStyledTextField(8);
         financePanel.add(createStyledLabel("Transaction Amount ($):")); 
         financePanel.add(amountField);
 
@@ -215,6 +211,7 @@ private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
                 log("Error: Export failed - " + ex.getMessage()); 
             }
         });
+
         loanBtn.addActionListener(e -> {
             Account a = getAccount();
             if(a == null) return;
@@ -344,12 +341,18 @@ private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
         return tf;
     }
 
-    private CompoundBorder createStyledTitledBorder(String title) {
-        TitledBorder border = BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(new Color(51, 65, 85), 1), title);
-        border.setTitleFont(new Font("Segoe UI", Font.BOLD, 12));
-        border.setTitleColor(new Color(148, 163, 184));
-        return BorderFactory.createCompoundBorder(border, new EmptyBorder(5, 5, 5, 5));
+    private javax.swing.border.Border createStyledTitledBorder(String title) {
+        return javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createTitledBorder(
+                javax.swing.BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                title,
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new Font("SansSerif", Font.BOLD, 12),
+                ACCENT_BLUE
+            ),
+            javax.swing.BorderFactory.createEmptyBorder(6, 8, 6, 8)
+        );
     }
 
     private void showGraphWindow(JPanel panel) {
@@ -388,6 +391,7 @@ private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
         }
         displayArea.append("----------------------------------------------------\n\n");
     }
+
     private boolean isPositiveNumber(String text) {
         try {
             double val = Double.parseDouble(text.trim());
