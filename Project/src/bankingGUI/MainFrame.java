@@ -35,6 +35,9 @@ public class MainFrame extends JFrame {
     private final Color ACCENT_PURPLE = new Color(139, 92, 246);
     private final Color BTN_NEUTRAL = new Color(51, 65, 85);
 
+    private static final Color PANEL_BG_LIGHT = new Color(245, 247, 250);
+private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
+
     public MainFrame() {
         accountTree = new BinarySearchTree();
         customerHash = new HashTable(10000);
