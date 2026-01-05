@@ -4,15 +4,14 @@ import bankingClasses.Account;
 import bankingClasses.Customer;
 import bankingClasses.Transaction;
 import bankingStructures.*;
-
-import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 public class MainFrame extends JFrame {
 
@@ -174,13 +173,25 @@ public class MainFrame extends JFrame {
 
         saveBtn.addActionListener(e -> {
             try {
-                java.io.FileWriter w = new java.io.FileWriter("bank_data.csv");
+                java.io.File file = new java.io.File("bank_data.csv");
+                java.io.FileWriter w = new java.io.FileWriter(file);
+                java.time.LocalDateTime now = java.time.LocalDateTime.now();
+                
+                w.write("# BANKING SYSTEM DATA EXPORT\n");
+                w.write("# Generated: " + now.toString() + "\n");
                 w.write("ID,Name,Balance\n");
-                for (Account a : accountTree.getAllAccounts()) w.write(a.getAccountNumber() + "," + a.getBalance() + "\n");
-                w.close(); log("Data successfully exported to bank_data.csv");
-            } catch (Exception ex) { log("Error: Export failed."); }
+                
+                int count = 0;
+                for (Account a : accountTree.getAllAccounts()) {
+                    w.write(a.getAccountNumber() + "," + a.getCustomer().getName() + "," + a.getBalance() + "\n");
+                    count++;
+                }
+                w.close(); 
+                log("EXPORT SUCCESS: " + count + " account records written to bank_data.csv");
+            } catch (Exception ex) { 
+                log("Error: Export failed - " + ex.getMessage()); 
+            }
         });
-
         loanBtn.addActionListener(e -> {
             Account a = getAccount();
             if(a == null) return;
