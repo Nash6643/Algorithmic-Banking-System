@@ -595,6 +595,11 @@ private String normalizeTransactionType(String rawType) {
         default: return clean;
     }
 }
+private void configureWindowBounds() {
+    this.setSize(1024, 720);
+    this.setMinimumSize(new java.awt.Dimension(800, 600));
+    this.setLocationRelativeTo(null);
+}
 
     private interface Sorter { void sort(ArrayList<Transaction> list); }
     private void runSort(String n, Sorter s) {
