@@ -22,6 +22,9 @@ public class MainFrame extends JFrame {
     private static final Color PANEL_BG_LIGHT = new Color(245, 247, 250);
     private static final Color PANEL_BG_DARK = new Color(40, 44, 52);
 
+    private static final Font HEADER_FONT = new Font("SansSerif", Font.BOLD, 14);
+    private static final Font REGULAR_FONT = new Font("SansSerif", Font.PLAIN, 12);
+
     private BinarySearchTree accountTree;
     private HashTable customerHash;
     private JTextArea displayArea;
