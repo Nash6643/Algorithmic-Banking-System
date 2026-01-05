@@ -487,6 +487,17 @@ private static class AuditLogger {
     }
 }
 
+// Feature 5: Component Factory Helper
+private JPanel createFormGroup(String labelText, JTextField field) {
+    JPanel panel = new JPanel(new java.awt.BorderLayout(5, 0));
+    panel.setOpaque(false);
+    JLabel label = new JLabel(labelText);
+    label.setFont(new Font("SansSerif", Font.BOLD, 12));
+    panel.add(label, java.awt.BorderLayout.WEST);
+    panel.add(field, java.awt.BorderLayout.CENTER);
+    return panel;
+}
+
     private interface Sorter { void sort(ArrayList<Transaction> list); }
     private void runSort(String n, Sorter s) {
         Account a = getAccount();
