@@ -60,6 +60,9 @@ public class MainFrame extends JFrame {
         displayArea = new JTextArea();
         displayArea.setEditable(false);
         displayArea.setFont(new Font("JetBrains Mono", Font.PLAIN, 13));
+        if (!displayArea.getFont().getFamily().equals("JetBrains Mono")) {
+            displayArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
+        }
         displayArea.setBackground(new Color(15, 23, 42));
         displayArea.setForeground(new Color(148, 163, 184));
         displayArea.setCaretColor(Color.WHITE);
