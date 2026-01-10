@@ -91,6 +91,7 @@ public class MainFrame extends JFrame {
         
         // Jan 10 - Feature 3: Standardized Layout Gaps
 inputPanel.setLayout(new java.awt.GridLayout(2, 4, 8, 8));
+JPanel buttonPanel = new JPanel();
 buttonPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 8));
         idField = createStyledTextField(6); 
         nameField = createStyledTextField(10); 
