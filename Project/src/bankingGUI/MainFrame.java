@@ -88,7 +88,10 @@ public class MainFrame extends JFrame {
         JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 12, 10));
         inputPanel.setBackground(CARD_BG);
         inputPanel.setBorder(createStyledTitledBorder("1. Account Management"));
-
+        
+        // Jan 10 - Feature 3: Standardized Layout Gaps
+inputPanel.setLayout(new java.awt.GridLayout(2, 4, 8, 8));
+buttonPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 8));
         idField = createStyledTextField(6); 
         nameField = createStyledTextField(10); 
         balanceField = createStyledTextField(8);
