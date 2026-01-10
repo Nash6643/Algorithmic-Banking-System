@@ -553,6 +553,18 @@ private JPanel createFormGroup(String labelText, JTextField field) {
     return panel;
 }
 
+// Jan 10 - Feature 4: Transaction Type Sanitizer
+private String normalizeTransactionType(String rawType) {
+    if (rawType == null) return "UNKNOWN";
+    String clean = rawType.trim().toUpperCase();
+    switch (clean) {
+        case "DEP": return "DEPOSIT";
+        case "WITH": return "WITHDRAWAL";
+        case "LN": return "LOAN";
+        default: return clean;
+    }
+}
+
     private interface Sorter { void sort(ArrayList<Transaction> list); }
     private void runSort(String n, Sorter s) {
         Account a = getAccount();
