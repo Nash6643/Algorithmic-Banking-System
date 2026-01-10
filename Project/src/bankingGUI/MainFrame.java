@@ -486,6 +486,15 @@ private static class AuditLogger {
         }).start();
     }
 }
+
+// Jan 10 - Feature 1: Account Profile Formatter
+private String formatAccountSummary(Account acc) {
+    if (acc == null) return "No account data available.";
+    return String.format(
+        "Account #%d | Owner: %s | Current Balance: $%.2f | Total Transactions: %d",
+        acc.getAccountNumber(), acc.getCustomer(), acc.getBalance(), acc.getHistory().size()
+    );
+}
 // Feature 5: Runtime Diagnostics & System Monitor
 public void logSystemDiagnostics() {
     Runtime rt = Runtime.getRuntime();
