@@ -487,6 +487,17 @@ private static class AuditLogger {
     }
 }
 
+// Jan 10 - Feature 2: Name Search Handler
+private Account findAccountByName(String name) {
+    if (name == null || name.trim().isEmpty()) return null;
+    for (Account acc : accountTree.getAllAccounts()) {
+        if (acc.getCustomer().toString().equalsIgnoreCase(name.trim())) {
+            return acc;
+        }
+    }
+    return null;
+}
+
 // Jan 10 - Feature 1: Account Profile Formatter
 private String formatAccountSummary(Account acc) {
     if (acc == null) return "No account data available.";
