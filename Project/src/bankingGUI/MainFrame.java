@@ -595,6 +595,11 @@ private String normalizeTransactionType(String rawType) {
         default: return clean;
     }
 }
+
+private boolean isFieldEmpty(JTextField field) {
+    return field == null || field.getText().trim().isEmpty();
+}
+
 private void configureWindowBounds() {
     this.setSize(1024, 720);
     this.setMinimumSize(new java.awt.Dimension(800, 600));
