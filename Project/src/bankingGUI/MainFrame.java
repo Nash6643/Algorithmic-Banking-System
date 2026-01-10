@@ -595,6 +595,12 @@ private String normalizeTransactionType(String rawType) {
         default: return clean;
     }
 }
+private void clearInputFields() {
+    idField.setText("");
+    nameField.setText("");
+    balanceField.setText("");
+    amountField.setText("");
+}
 
 private boolean isFieldEmpty(JTextField field) {
     return field == null || field.getText().trim().isEmpty();
