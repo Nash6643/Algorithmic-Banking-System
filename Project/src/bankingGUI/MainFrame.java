@@ -602,6 +602,11 @@ private void clearInputFields() {
     amountField.setText("");
 }
 
+private void optimizeScrollSpeed(JScrollPane scrollPane) {
+    scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+    scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
+}
+
 private boolean isFieldEmpty(JTextField field) {
     return field == null || field.getText().trim().isEmpty();
 }
