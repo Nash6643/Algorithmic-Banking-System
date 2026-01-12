@@ -91,7 +91,7 @@ public class MainFrame extends JFrame {
         idField.setToolTipText("Enter numeric Account ID (e.g. 101)");
         nameField.setToolTipText("Enter Customer Full Name");
         balanceField.setToolTipText("Enter initial balance amount (numeric)");
-        amountField.setToolTipText("Enter transaction/loan amount");
+        amountField.setToolTipText("Enter transaction or loan amount");
 
         inputPanel.add(createStyledLabel("Account ID:")); inputPanel.add(idField);
         inputPanel.add(createStyledLabel("Name:")); inputPanel.add(nameField);
