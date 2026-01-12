@@ -601,6 +601,10 @@ private void clearInputFields() {
     balanceField.setText("");
     amountField.setText("");
 }
+private void logWithTimestamp(String message) {
+    String timestamp = java.time.LocalTime.now().toString().substring(0, 8);
+    log("[" + timestamp + "] " + message);
+}
 
 private void optimizeScrollSpeed(JScrollPane scrollPane) {
     scrollPane.getVerticalScrollBar().setUnitIncrement(16);
