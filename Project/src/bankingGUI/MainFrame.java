@@ -396,6 +396,7 @@ public class MainFrame extends JFrame {
     }
 
     private boolean isPositiveNumber(String text) {
+        if (text == null || text.trim().isEmpty()) return false;
         try {
             double val = Double.parseDouble(text.trim());
             return val >= 0;
