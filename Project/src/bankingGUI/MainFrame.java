@@ -184,13 +184,16 @@ public class MainFrame extends JFrame {
             } catch (Exception ex) { log("Error: Invalid Account ID."); }
         });
 
-        loadBtn.addActionListener(e -> {
-            log("Generating 1,000 synthetic account records...");
-            cachedGraphPanel = null;
-            new Thread(() -> {
-                FakeAccountGenerator.generateData(accountTree, customerHash, 1000);
-                SwingUtilities.invokeLater(() -> log("Data Population Complete! (~15,000 transactions initialized)"));
-            }).start();
+        loanBtn.addActionListener(e -> {
+            if (!isPositiveNumber(amountField.getText())) {
+                log("Error: Please enter a valid positive numeric amount.");
+                return;
+            }
+            Account a = getAccount();
+            if (a == null) return;
+            double amount = Double.parseDouble(amountField.getText().trim());
+            a.takeLoan(amount);
+            log("SUCCESS: Loan of $" + amount + " approved for ID: " + a.getAccountNumber());
         });
 
         saveBtn.addActionListener(e -> {
