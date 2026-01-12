@@ -79,6 +79,12 @@ public class MainFrame extends JFrame {
         inputPanel.setBackground(CARD_BG);
         inputPanel.setBorder(createStyledTitledBorder("1. Account Management"));
 
+
+        idField.setToolTipText("Enter numeric Account ID (e.g. 101)");
+        nameField.setToolTipText("Enter Customer Full Name");
+        balanceField.setToolTipText("Enter initial balance amount (numeric)");
+        amountField.setToolTipText("Enter transaction/loan amount");
+
         idField = createStyledTextField(6); 
         nameField = createStyledTextField(10); 
         balanceField = createStyledTextField(8);
@@ -355,6 +361,15 @@ public class MainFrame extends JFrame {
             }
         }
         displayArea.append(" ----------------------------------------\n");
+    }
+
+    private boolean isPositiveNumber(String text) {
+        try {
+            double val = Double.parseDouble(text.trim());
+            return val >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private interface Sorter { void sort(ArrayList<Transaction> list); }
