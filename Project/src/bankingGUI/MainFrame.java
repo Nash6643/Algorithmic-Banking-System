@@ -486,6 +486,19 @@ private static class AuditLogger {
         }).start();
     }
 }
+// Feature 5: Numeric Input Restrictor Filter
+private void restrictToNumericOnly(JTextField field) {
+    ((javax.swing.text.AbstractDocument) field.getDocument()).setDocumentFilter(new javax.swing.text.DocumentFilter() {
+        @Override
+        public void insertString(FilterBypass fb, int offset, String string, javax.swing.text.AttributeSet attr) throws javax.swing.text.BadLocationException {
+            if (string != null && string.matches("[0-9.]*")) super.insertString(fb, offset, string, attr);
+        }
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String text, javax.swing.text.AttributeSet attrs) throws javax.swing.text.BadLocationException {
+            if (text != null && text.matches("[0-9.]*")) super.replace(fb, offset, length, text, attrs);
+        }
+    });
+}
 
 // Feature 5: Component Factory Helper
 private JPanel createFormGroup(String labelText, JTextField field) {
