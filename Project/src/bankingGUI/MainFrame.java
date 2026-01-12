@@ -175,13 +175,13 @@ public class MainFrame extends JFrame {
 
         searchBtn.addActionListener(e -> {
             try {
-                long s = System.nanoTime();
-                Account a = accountTree.search(Integer.parseInt(idField.getText()));
-                if(a != null) {
-                    log("FOUND: " + a + " (" + (System.nanoTime() - s) + " ns execution)");
-                    printHistory(a);
-                } else log("Account ID not found.");
-            } catch (Exception ex) { log("Error: Invalid Account ID."); }
+                Account a = getAccount();
+                if (a != null) {
+                    log("SEARCH FOUND: " + a.getAccountNumber() + " | Owner: " + a.getCustomer() + " | Balance: $" + a.getBalance());
+                }
+            } catch (Exception ex) {
+                log("Error: BST Search failed - " + ex.getClass().getSimpleName() + ": " + ex.getMessage());
+            }
         });
 
         loanBtn.addActionListener(e -> {
