@@ -435,6 +435,12 @@ private String calculateAccountMetrics(Account acc) {
     
     return String.format("Risk Level: %s | Total Activity: %d transactions", riskLevel, totalTx);
 }
+
+// Jan 17 - Feature 1: High-Value Account Detector
+private boolean isVIPAccount(Account acc) {
+    if (acc == null) return false;
+    return acc.getBalance() >= 10000.00;
+}
 // Feature 3: Modular Data Exporter Strategy
 public interface DataExporter {
     void exportData(java.util.List<Account> accounts, java.io.File targetFile) throws Exception;
