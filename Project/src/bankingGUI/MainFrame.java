@@ -609,6 +609,10 @@ private double getHighestBalanceInSystem() {
     }
     return max;
 }
+private String sanitizeExportFileName(String fileName) {
+    if (fileName == null || fileName.trim().isEmpty()) return "export.csv";
+    return fileName.endsWith(".csv") ? fileName : fileName + ".csv";
+}
 private void logWithTimestamp(String message) {
     String timestamp = java.time.LocalTime.now().toString().substring(0, 8);
     log("[" + timestamp + "] " + message);
