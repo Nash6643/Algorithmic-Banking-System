@@ -452,6 +452,12 @@ private int getActiveAccountCount() {
     }
     return count;
 }
+
+// Jan 17 - Feature 4: Performance Stopwatch Timer
+private void logExecutionTime(String operationName, long startTimeNanos) {
+    long elapsedMs = (System.nanoTime() - startTimeNanos) / 1_000_000;
+    log(String.format("PERFORMANCE: %s completed in %d ms", operationName, elapsedMs));
+}
 // Jan 17 - Feature 1: High-Value Account Detector
 private boolean isVIPAccount(Account acc) {
     if (acc == null) return false;
