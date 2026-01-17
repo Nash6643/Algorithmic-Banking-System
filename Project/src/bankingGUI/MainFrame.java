@@ -435,7 +435,14 @@ private String calculateAccountMetrics(Account acc) {
     
     return String.format("Risk Level: %s | Total Activity: %d transactions", riskLevel, totalTx);
 }
-
+// Jan 17 - Feature 2: Total Liquidity Aggregator
+private double calculateTotalSystemLiquidity() {
+    double total = 0.0;
+    for (Account acc : accountTree.getAllAccounts()) {
+        total += acc.getBalance();
+    }
+    return total;
+}
 // Jan 17 - Feature 1: High-Value Account Detector
 private boolean isVIPAccount(Account acc) {
     if (acc == null) return false;
