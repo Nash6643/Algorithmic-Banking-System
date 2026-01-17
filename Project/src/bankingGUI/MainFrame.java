@@ -435,7 +435,7 @@ private String calculateAccountMetrics(Account acc) {
     
     return String.format("Risk Level: %s | Total Activity: %d transactions", riskLevel, totalTx);
 }
-// Jan 17 - Feature 2: Total Liquidity Aggregator
+
 private double calculateTotalSystemLiquidity() {
     double total = 0.0;
     for (Account acc : accountTree.getAllAccounts()) {
@@ -444,7 +444,6 @@ private double calculateTotalSystemLiquidity() {
     return total;
 }
 
-// Jan 17 - Feature 3: Active Account Filter
 private int getActiveAccountCount() {
     int count = 0;
     for (Account acc : accountTree.getAllAccounts()) {
@@ -453,12 +452,12 @@ private int getActiveAccountCount() {
     return count;
 }
 
-// Jan 17 - Feature 4: Performance Stopwatch Timer
+
 private void logExecutionTime(String operationName, long startTimeNanos) {
     long elapsedMs = (System.nanoTime() - startTimeNanos) / 1_000_000;
     log(String.format("PERFORMANCE: %s completed in %d ms", operationName, elapsedMs));
 }
-// Jan 17 - Feature 1: High-Value Account Detector
+
 private boolean isVIPAccount(Account acc) {
     if (acc == null) return false;
     return acc.getBalance() >= 10000.00;
@@ -518,7 +517,7 @@ private static class AuditLogger {
     }
 }
 
-// Jan 10 - Feature 2: Name Search Handler
+
 private Account findAccountByName(String name) {
     if (name == null || name.trim().isEmpty()) return null;
     for (Account acc : accountTree.getAllAccounts()) {
@@ -529,7 +528,7 @@ private Account findAccountByName(String name) {
     return null;
 }
 
-// Jan 10 - Feature 1: Account Profile Formatter
+
 private String formatAccountSummary(Account acc) {
     if (acc == null) return "No account data available.";
     return String.format(
@@ -581,7 +580,7 @@ private JPanel createFormGroup(String labelText, JTextField field) {
     return panel;
 }
 
-// Jan 10 - Feature 4: Transaction Type Sanitizer
+
 private String normalizeTransactionType(String rawType) {
     if (rawType == null) return "UNKNOWN";
     String clean = rawType.trim().toUpperCase();
