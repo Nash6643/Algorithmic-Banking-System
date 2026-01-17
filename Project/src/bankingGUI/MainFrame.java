@@ -443,6 +443,15 @@ private double calculateTotalSystemLiquidity() {
     }
     return total;
 }
+
+// Jan 17 - Feature 3: Active Account Filter
+private int getActiveAccountCount() {
+    int count = 0;
+    for (Account acc : accountTree.getAllAccounts()) {
+        if (acc.getBalance() > 0) count++;
+    }
+    return count;
+}
 // Jan 17 - Feature 1: High-Value Account Detector
 private boolean isVIPAccount(Account acc) {
     if (acc == null) return false;
