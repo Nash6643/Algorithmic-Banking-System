@@ -601,6 +601,14 @@ private void clearInputFields() {
     balanceField.setText("");
     amountField.setText("");
 }
+
+private double getHighestBalanceInSystem() {
+    double max = 0.0;
+    for (Account acc : accountTree.getAllAccounts()) {
+        if (acc.getBalance() > max) max = acc.getBalance();
+    }
+    return max;
+}
 private void logWithTimestamp(String message) {
     String timestamp = java.time.LocalTime.now().toString().substring(0, 8);
     log("[" + timestamp + "] " + message);
