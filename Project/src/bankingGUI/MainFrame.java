@@ -486,6 +486,15 @@ private static class AuditLogger {
         }).start();
     }
 }
+
+// Feature 5: Real-time UI Status Indicator
+private JLabel statusBar = new JLabel(" System Ready");
+
+private void updateStatus(String statusText, boolean isError) {
+    statusBar.setText(" Status: " + statusText);
+    statusBar.setForeground(isError ? ACCENT_RED : new Color(40, 167, 69));
+    log("STATUS: " + statusText);
+}
 // Feature 5: Numeric Input Restrictor Filter
 private void restrictToNumericOnly(JTextField field) {
     ((javax.swing.text.AbstractDocument) field.getDocument()).setDocumentFilter(new javax.swing.text.DocumentFilter() {
