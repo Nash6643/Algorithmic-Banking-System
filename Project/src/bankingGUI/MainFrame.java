@@ -98,6 +98,20 @@ public class MainFrame extends JFrame {
         JButton loadBtn = new ModernButton("Load 1k Data", ACCENT_PURPLE);
         JButton saveBtn = new ModernButton("Export (.csv)", ACCENT_GREEN);
 
+
+        JButton resetBtn = new ModernButton("Reset Fields", ACCENT_RED);
+        inputPanel.add(resetBtn);
+
+        resetBtn.addActionListener(e -> {
+            idField.setText("");
+            nameField.setText("");
+            balanceField.setText("");
+            amountField.setText("");
+            cachedGraphPanel = null;
+            cachedDataSize = 0;
+            log("Form fields cleared and benchmark cache reset.");
+        });
+
         inputPanel.add(createBtn); 
         inputPanel.add(searchBtn);
         inputPanel.add(Box.createHorizontalStrut(15)); 
