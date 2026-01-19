@@ -398,6 +398,13 @@ public class MainFrame extends JFrame {
         displayArea.append("----------------------------------------------------\n\n");
     }
 
+    private void resetFields() {
+        idField.setText("");
+        nameField.setText("");
+        balanceField.setText("");
+        amountField.setText("");
+    }
+    
     private boolean isPositiveNumber(String text) {
         if (text == null || text.trim().isEmpty()) return false;
         try {
