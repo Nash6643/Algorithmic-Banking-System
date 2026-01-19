@@ -11,6 +11,12 @@ import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Main Frame Dashboard for the Algorithmic Banking Management System.
+ * Handles UI interactions, dual-structure indexing (Binary Search Tree & Hash Map),
+ * and transaction execution logging.
+ */
+
 public class MainFrame extends JFrame {
 
     private static final Color PANEL_BG_LIGHT = new Color(245, 247, 250);
