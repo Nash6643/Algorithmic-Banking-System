@@ -609,6 +609,14 @@ private double getHighestBalanceInSystem() {
     }
     return max;
 }
+
+private void executeSafeAction(Runnable action, String failureMessage) {
+    try {
+        action.run();
+    } catch (Exception e) {
+        log("ERROR: " + failureMessage + " - " + e.getMessage());
+    }
+}
 private String sanitizeExportFileName(String fileName) {
     if (fileName == null || fileName.trim().isEmpty()) return "export.csv";
     return fileName.endsWith(".csv") ? fileName : fileName + ".csv";
