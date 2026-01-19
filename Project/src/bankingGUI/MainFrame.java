@@ -617,6 +617,11 @@ private void executeSafeAction(Runnable action, String failureMessage) {
         log("ERROR: " + failureMessage + " - " + e.getMessage());
     }
 }
+
+private boolean confirmAction(String message, String title) {
+    int choice = JOptionPane.showConfirmDialog(this, message, title, JOptionPane.YES_NO_OPTION);
+    return choice == JOptionPane.YES_OPTION;
+}
 private String sanitizeExportFileName(String fileName) {
     if (fileName == null || fileName.trim().isEmpty()) return "export.csv";
     return fileName.endsWith(".csv") ? fileName : fileName + ".csv";
