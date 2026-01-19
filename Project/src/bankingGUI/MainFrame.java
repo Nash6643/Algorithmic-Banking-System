@@ -104,15 +104,10 @@ public class MainFrame extends JFrame {
 
         JButton resetBtn = new ModernButton("Reset Fields", ACCENT_RED);
         inputPanel.add(resetBtn);
-
+        
         resetBtn.addActionListener(e -> {
-            idField.setText("");
-            nameField.setText("");
-            balanceField.setText("");
-            amountField.setText("");
-            cachedGraphPanel = null;
-            cachedDataSize = 0;
-            log("Form fields cleared and benchmark cache reset.");
+            resetFields();
+            log("Form fields cleared.");
         });
 
         inputPanel.add(createBtn); 
@@ -404,7 +399,7 @@ public class MainFrame extends JFrame {
         balanceField.setText("");
         amountField.setText("");
     }
-    
+
     private boolean isPositiveNumber(String text) {
         if (text == null || text.trim().isEmpty()) return false;
         try {
