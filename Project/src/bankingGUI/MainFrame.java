@@ -398,6 +398,8 @@ public class MainFrame extends JFrame {
         nameField.setText("");
         balanceField.setText("");
         amountField.setText("");
+        cachedGraphPanel = null;
+        cachedDataSize = 0;
     }
 
     private boolean isPositiveNumber(String text) {
