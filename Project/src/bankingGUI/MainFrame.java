@@ -418,6 +418,20 @@ public class MainFrame extends JFrame {
         }
     }
 
+    // Feature 1: Asynchronous Security Logger
+private static class AuditLogger {
+    private static final String AUDIT_FILE = "security_audit.log";
+    
+    public static void logEvent(String eventType, String details) {
+        new Thread(() -> {
+            try (java.io.PrintWriter out = new java.io.PrintWriter(new java.io.FileWriter(AUDIT_FILE, true))) {
+                String timestamp = java.time.LocalDateTime.now().toString();
+                out.printf("[%s] [%s] %s%n", timestamp, eventType, details);
+            } catch (Exception ignored) {}
+        }).start();
+    }
+}
+
     private interface Sorter { void sort(ArrayList<Transaction> list); }
     private void runSort(String n, Sorter s) {
         Account a = getAccount();
