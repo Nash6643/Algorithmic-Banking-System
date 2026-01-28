@@ -452,6 +452,27 @@ public class JSONDataExporter implements DataExporter {
         }
     }
 }
+
+
+// Feature 4: Memory Cache Layer for Rapid Access
+private final java.util.Map<Integer, Account> accountCache = 
+    new java.util.LinkedHashMap<Integer, Account>(16, 0.75f, true) {
+        @Override
+        protected boolean removeEldestEntry(java.util.Map.Entry<Integer, Account> eldest) {
+            return size() > 50; // Keep top 50 accounts cached in memory
+        }
+    };
+
+private Account getCachedAccount(int accNum) {
+    if (accountCache.containsKey(accNum)) {
+        return accountCache.get(accNum);
+    }
+    Account a = accountTree.search(accNum);
+    if (a != null) {
+        accountCache.put(accNum, a);
+    }
+    return a;
+}
     // Feature 1: Asynchronous Security Logger
 private static class AuditLogger {
     private static final String AUDIT_FILE = "security_audit.log";
