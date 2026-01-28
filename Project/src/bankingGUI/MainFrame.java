@@ -486,6 +486,16 @@ private static class AuditLogger {
         }).start();
     }
 }
+// Feature 5: Runtime Diagnostics & System Monitor
+public void logSystemDiagnostics() {
+    Runtime rt = Runtime.getRuntime();
+    long totalMem = rt.totalMemory() / (1024 * 1024);
+    long freeMem = rt.freeMemory() / (1024 * 1024);
+    long usedMem = totalMem - freeMem;
+    
+    log(String.format("DIAGNOSTICS: Memory Used: %d MB | Free: %d MB | Total: %d MB", 
+        usedMem, freeMem, totalMem));
+}
 
 // Feature 5: Real-time UI Status Indicator
 private JLabel statusBar = new JLabel(" System Ready");
