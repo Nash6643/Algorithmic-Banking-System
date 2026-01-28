@@ -432,7 +432,26 @@ private String calculateAccountMetrics(Account acc) {
     
     return String.format("Risk Level: %s | Total Activity: %d transactions", riskLevel, totalTx);
 }
+// Feature 3: Modular Data Exporter Strategy
+public interface DataExporter {
+    void exportData(java.util.List<Account> accounts, java.io.File targetFile) throws Exception;
+}
 
+public class JSONDataExporter implements DataExporter {
+    @Override
+    public void exportData(java.util.List<Account> accounts, java.io.File targetFile) throws Exception {
+        try (java.io.FileWriter w = new java.io.FileWriter(targetFile)) {
+            w.write("[\n");
+            for (int i = 0; i < accounts.size(); i++) {
+                Account a = accounts.get(i);
+                w.write(String.format("  {\"id\": %d, \"name\": \"%s\", \"balance\": %.2f}%s\n",
+                    a.getAccountNumber(), a.getCustomer().getName(), a.getBalance(),
+                    (i < accounts.size() - 1) ? "," : ""));
+            }
+            w.write("]\n");
+        }
+    }
+}
     // Feature 1: Asynchronous Security Logger
 private static class AuditLogger {
     private static final String AUDIT_FILE = "security_audit.log";
