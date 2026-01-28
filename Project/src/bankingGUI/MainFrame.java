@@ -418,6 +418,21 @@ public class MainFrame extends JFrame {
         }
     }
 
+    // Feature 2: Financial Risk & Analytics Model
+private String calculateAccountMetrics(Account acc) {
+    double balance = acc.getBalance();
+    int totalTx = acc.getHistory().size();
+    
+    String riskLevel = "LOW";
+    if (balance < 100 && totalTx > 10) {
+        riskLevel = "HIGH (Low Balance & High Volatility)";
+    } else if (balance < 500) {
+        riskLevel = "MEDIUM";
+    }
+    
+    return String.format("Risk Level: %s | Total Activity: %d transactions", riskLevel, totalTx);
+}
+
     // Feature 1: Asynchronous Security Logger
 private static class AuditLogger {
     private static final String AUDIT_FILE = "security_audit.log";
