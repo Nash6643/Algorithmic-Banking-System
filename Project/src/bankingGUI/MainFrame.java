@@ -623,6 +623,15 @@ private String convertAccountToCSV(Account acc) {
     return String.format("%d,%s,%.2f", acc.getAccountNumber(), acc.getCustomer().toString(), acc.getBalance());
 }
 
+private void setupShutdownHook() {
+    this.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent e) {
+            System.out.println("Banking System UI closing down cleanly...");
+        }
+    });
+}
+
 private boolean confirmAction(String message, String title) {
     int choice = JOptionPane.showConfirmDialog(this, message, title, JOptionPane.YES_NO_OPTION);
     return choice == JOptionPane.YES_OPTION;
