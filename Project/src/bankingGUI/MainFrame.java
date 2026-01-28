@@ -364,19 +364,27 @@ public class MainFrame extends JFrame {
     }
 
     private void printHistory(Account acc) {
-        displayArea.append(" --- Transaction History [Acc ID: " + acc.getAccountNumber() + "] ---\n");
+        displayArea.append("====================================================\n");
+        displayArea.append(" [ACCOUNT STATEMENT] ID: " + acc.getAccountNumber() + " | Owner: " + acc.getCustomer() + "\n");
+        displayArea.append("====================================================\n");
+        
         int count = 0;
-        for(Transaction t : acc.getHistory()) {
-            displayArea.append(String.format("   [Amount: $%.2f] | Type: %s\n", t.getAmount(), t.getType()));
-            count++;
-            if(count >= 15) {
-                displayArea.append("   ... (" + (acc.getHistory().size() - 15) + " hidden entries)\n");
-                break;
+        if (acc.getHistory().isEmpty()) {
+            displayArea.append("   [INFO] No recorded transactions available.\n");
+        } else {
+            for (Transaction t : acc.getHistory()) {
+                count++;
+                String formattedAmount = String.format("$%,10.2f", t.getAmount());
+                displayArea.append(String.format("   #%02d | %-12s | Amount: %s | Status: OK\n", 
+                    count, t.getType(), formattedAmount));
+                if (count >= 15) {
+                    displayArea.append("   ... (" + (acc.getHistory().size() - 15) + " older transactions truncated)\n");
+                    break;
+                }
             }
         }
-        displayArea.append(" ----------------------------------------\n");
+        displayArea.append("----------------------------------------------------\n\n");
     }
-
     private boolean isPositiveNumber(String text) {
         try {
             double val = Double.parseDouble(text.trim());
