@@ -618,6 +618,11 @@ private void executeSafeAction(Runnable action, String failureMessage) {
     }
 }
 
+private String convertAccountToCSV(Account acc) {
+    if (acc == null) return "";
+    return String.format("%d,%s,%.2f", acc.getAccountNumber(), acc.getCustomer().toString(), acc.getBalance());
+}
+
 private boolean confirmAction(String message, String title) {
     int choice = JOptionPane.showConfirmDialog(this, message, title, JOptionPane.YES_NO_OPTION);
     return choice == JOptionPane.YES_OPTION;
